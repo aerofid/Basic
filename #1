@@ -1,0 +1,21 @@
+Imports HtmlAgilityPack
+
+Public Function ExtractTitleFromWebsite(url As String) As String
+    ' Create a new HtmlWeb object
+    Dim web As New HtmlWeb()
+
+    Try
+        ' Load the webpage
+        Dim doc As HtmlDocument = web.Load(url)
+
+        ' Get the title element
+        Dim titleNode As HtmlNode = doc.DocumentNode.SelectSingleNode("//title")
+
+        ' Return the title text
+        Return titleNode.InnerText
+    Catch ex As Exception
+        ' Log the error
+        Console.WriteLine("Error: " & ex.Message)
+        Return ""
+    End Try
+End Function
